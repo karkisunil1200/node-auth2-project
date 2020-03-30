@@ -14,6 +14,10 @@ router.post('/', (req, res) => {
     .then(user => {
       //   console.log(user.password);
       if (user && bcrypt.compareSync(password, user.password)) {
+        req.session.user = {
+          id: user.id,
+          username: user.username
+        };
         res.status(200).json({hello: `Welcome ${user.username}`});
       } else {
         res.status(401).json({message: 'username or password did not match'});
