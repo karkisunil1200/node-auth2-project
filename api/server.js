@@ -3,6 +3,8 @@ const usersRouter = require('../users/user-router');
 
 const server = express();
 
+server.use(express.json());
+
 server.get('/', (req, res) => {
   res.send({server: 'up'});
 });

@@ -9,10 +9,7 @@ exports.up = function(knex) {
 
     tbl.string('password').notNullable();
 
-    tbl
-      .string('department')
-      .notNullable()
-      .unique();
+    tbl.string('department').notNullable();
   });
 };
 

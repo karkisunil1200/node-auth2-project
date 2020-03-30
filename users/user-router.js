@@ -13,4 +13,16 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  const user = req.body;
+
+  Users.add(user)
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(err => {
+      res.status(500).json({message: 'Something went wrong adding user', error: err.message});
+    });
+});
+
 module.exports = router;
