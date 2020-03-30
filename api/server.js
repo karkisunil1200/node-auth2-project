@@ -1,6 +1,7 @@
 const express = require('express');
 const usersRouter = require('../users/user-router');
 const registerRouter = require('../auth/register_router');
+const loginRouter = require('../auth/login_router');
 
 const server = express();
 
@@ -12,5 +13,6 @@ server.get('/', (req, res) => {
 
 server.use('/api/users', usersRouter);
 server.use('/api/register', registerRouter);
+server.use('/api/login', loginRouter);
 
 module.exports = server;

@@ -9,7 +9,16 @@ function add(user) {
   return db('users').insert(user);
 }
 
+function findBy(user) {
+  //   console.log('coming from model, ', user);
+  return db
+    .select('*')
+    .from('users')
+    .where(user);
+}
+
 module.exports = {
   find,
-  add
+  add,
+  findBy
 };
