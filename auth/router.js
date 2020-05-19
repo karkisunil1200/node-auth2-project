@@ -26,4 +26,24 @@ router.post('/register', (req, res) => {
   }
 });
 
+router.post('/login', (req, res) => {
+  const {username, password} = req.body;
+
+  if (isValid(req.body)) {
+    Users.findBy({username})
+      .then(([user]) => {
+        if (user && bcryptjs.compareSync(password, user.password)) {
+          res.status(200).json({welcome: username});
+        } else {
+          res.status(400).json({error: 'Invalid credentials'});
+        }
+      })
+      .catch(err => {
+        res.status(500).json({error: err.message});
+      });
+  } else {
+    res.status(400).json({error: 'please enter username and password'});
+  }
+});
+
 module.exports = router;
